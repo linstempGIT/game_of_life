@@ -45,7 +45,6 @@ class Cell(Sprite):
         '''该方法改变主图像为指定的模式(未指定模式默认为0）'''
 
         if mode == 1:
-            self.mode = 1
             self.image = self.image_1
         elif mode == 2:
             self.mode = 2
