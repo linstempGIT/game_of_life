@@ -1,3 +1,4 @@
+import pygame
 import display_functions as df
 import game_functions as gf
 from settings import Settings
@@ -11,13 +12,14 @@ def run_game():
     screen = df.initialize()
     # 创建cell的编组
     cells_group = df.init_cells_group(settings)
-
+    # 创建自动迭代定时触发器
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
 
     # 开始游戏循环
     while True:
 
         # 检查标准输入并响应
-        gf.check_events(screen, cells_group)
+        gf.check_events(settings, cells_group)
 
         # 渲染screen图像
         df.display_screen(screen, cells_group)
