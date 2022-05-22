@@ -1,14 +1,12 @@
 from copy import deepcopy
 from settings import Settings
 import pygame
-from os.path import dirname
 
-dir_name = dirname(__file__) + '/images/'
 
 class Cell():
     '''存储cell类的属性和方法'''
 
-    def __init__(self, settings, group_index):
+    def __init__(self, settings, group_index, images):
         '''初始化单元格，并设置其起始位置'''
 
         super().__init__()
@@ -16,19 +14,12 @@ class Cell():
         # 设置cell的大小
         self.cell_size = settings.cell_size
 
-        # 加载cell的未激活模式图像，并为其创建一个rect对象
-        self.origin_image_0 = pygame.image.load(dir_name + 'cell_image_0.png')
-        self.image_0 = self.change_size(self.origin_image_0)
+        # 加载cell的未激活、待变、激活三种模式的图像
+        self.image_0 = images[0]
+        self.image_1 = images[1]
+        self.image_2 = images[2]
 
-        # 加载cell的选中模式图像，为其创建一个rect对象
-        self.origin_image_1 = pygame.image.load(dir_name + 'cell_image_1.png')
-        self.image_1 = self.change_size(self.origin_image_1)
-
-        # 加载cell的激活模式的图像，并为其创建一个rect对象
-        self.origin_image_2 = pygame.image.load(dir_name + 'cell_image_2.png')
-        self.image_2 = self.change_size(self.origin_image_2)
-
-        # 创建cell时，默认主图像为未激活模式
+        # 创建cell时，默认主图像为未激活模式，根据image创建实体rect
         self.mode = 0
         self.image = self.image_0
         self.rect = self.image.get_rect()

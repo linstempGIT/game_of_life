@@ -1,5 +1,7 @@
+from tkinter import image_names
 import pygame
 from game_functions import enter_next_round
+from os.path import dirname
 from settings import Settings
 from cell import Cell
 
@@ -39,13 +41,26 @@ def initialize():
     
 #     return cells_coordinates
 
+def init_cells_image(settings):
+    '''该函数导入并创建单元格所需要的图像'''
+
+    image_size = settings.cell_size
+    dir_name = dirname(__file__) + '/images/'
+    images_name = [dir_name + 'cell_image_' + str(i) + '.png' for i in range(3)]
+
+    origin_images = tuple(map(pygame.image.load, images_name))
+    size_list = [image_size] * 3
+
+    return tuple(map(pygame.transform.scale, origin_images, size_list))
+
 
 def init_cells_group(settings):
     '''该函数创建并返回管理cell的编组'''
 
     cells_group = []
     for group_index in range(settings.cell_nums):
-        cell = Cell(settings, group_index)
+        images = init_cells_image(settings)
+        cell = Cell(settings, group_index, images)
         cells_group.append(cell)
         
     return cells_group
