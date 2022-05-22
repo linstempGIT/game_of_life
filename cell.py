@@ -72,7 +72,7 @@ class Cell():
         self.s_index = self.group_index + settings.x_cell_nums
         if self.y_index == 0:
             self.n_index = None
-        if self.y_index == (settings.x_cell_nums - 1) :
+        if self.y_index == (settings.y_cell_nums - 1) :
             self.s_index = None
 
         # 获得west和east方向的cell的index，如果是边界则为None
@@ -80,7 +80,7 @@ class Cell():
         self.e_index = self.group_index + 1
         if self.x_index == 0:
             self.w_index = None
-        if self.x_index == (settings.y_cell_nums -1):
+        if self.x_index == (settings.x_cell_nums -1):
             self.e_index = None
 
         # 获得northwest和northeast方向的cell的index，如果是边界则为None
