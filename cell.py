@@ -3,7 +3,7 @@ from settings import Settings
 import pygame
 from os.path import dirname
 
-dir_name = dirname(__file__) + '/'
+dir_name = dirname(__file__) + '/images/'
 
 class Cell():
     '''存储cell类的属性和方法'''
@@ -17,16 +17,16 @@ class Cell():
         self.cell_size = settings.cell_size
 
         # 加载cell的未激活模式图像，并为其创建一个rect对象
-        self.image_0 = self.change_size(pygame.image
-                                        .load(dir_name + 'cell_image_0.png'))
+        self.origin_image_0 = pygame.image.load(dir_name + 'cell_image_0.png')
+        self.image_0 = self.change_size(self.origin_image_0)
 
         # 加载cell的选中模式图像，为其创建一个rect对象
-        self.image_1 = self.change_size(pygame.image
-                                        .load(dir_name + 'cell_image_1.png'))
+        self.origin_image_1 = pygame.image.load(dir_name + 'cell_image_1.png')
+        self.image_1 = self.change_size(self.origin_image_1)
 
         # 加载cell的激活模式的图像，并为其创建一个rect对象
-        self.image_2 = self.change_size(pygame.image
-                                        .load(dir_name + 'cell_image_2.png'))
+        self.origin_image_2 = pygame.image.load(dir_name + 'cell_image_2.png')
+        self.image_2 = self.change_size(self.origin_image_2)
 
         # 创建cell时，默认主图像为未激活模式
         self.mode = 0
