@@ -131,13 +131,15 @@ def continuous_choise_cells(cells_group,mouse_pos):
 def reflect_moving_mouse(cells_group, mouse_pos):
     '''该函数在鼠标点击单元格时对其移动响应'''
     
+    global clicking_cell
     global first_clicking_mode
 
     if not clicking_cell.rect.collidepoint(*mouse_pos):
         # 当移开选中单元格且鼠标未松开,还原模式
         clicking_cell.change_mode(first_clicking_mode)
-        # 对下移动到的下一个单元格进行选中
-        reflect_clicking_cells(cells_group, mouse_pos)
+        # 消除clicking_cell和first_clicking的指向
+        clicking_cell = None
+        first_clicking_mode = None
 
 
 def reflect_up_mouse():
@@ -155,8 +157,9 @@ def reflect_up_mouse():
             clicking_cell.change_mode(first_clicking_mode ^ 0 ^ 2)
     # 非连续模式时同步living_cells_list并对松开鼠标的单元格模式进行取反
     else:
-        manage_living_cells_list(clicking_cell.mode, clicking_cell.group_index)
-        clicking_cell.change_mode(clicking_cell.mode ^ 2 ^ 0)
+        if clicking_cell:
+            manage_living_cells_list(clicking_cell.mode, clicking_cell.group_index)
+            clicking_cell.change_mode(clicking_cell.mode ^ 2 ^ 0)
     # 消除clicking_cell和first_clicking_mode指向
     clicking_cell = None
     first_clicking_mode = None
