@@ -13,7 +13,7 @@ def run_game():
     # 创建cell的编组
     cells_group = df.init_cells_group(settings)
     # 创建自动迭代定时触发器
-    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    pygame.time.set_timer(pygame.USEREVENT, settings.auto_display_speed)
 
     # 开始游戏循环
     while True:

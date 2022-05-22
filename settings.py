@@ -8,6 +8,9 @@ class Settings():
         self.screen_size = (800, 800)
         self.screen_bg_color = (230, 230, 230)
 
+        # 自动播放速度设置
+        self.auto_display_speed = 1000
+        
         # 单元格设置
         self.cell_size = (20, 20)
         # x_cell_nums表示在屏幕的横向可生成的最大cell个数
